@@ -17,31 +17,25 @@ The goals / steps of this project are the following:
 ### My pipeline consisted of 5 steps. Specific can see the following introduction：
 ### Pipeline 主要由5步构成，具体可看以下介绍：
 * ## Step 1: Convert RGB image to grayscale
-`cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)`
 
 <figure>
 <img src="https://github.com/GitEasonXu/Udacity-CarND-Term1/blob/master/image/gray.png" width="380" alt="Gray Image" />
-<figcaption>
-<p></p> 
-<p style="text-align: center;"> Gray Image </p> 
-</figcaption>
 </figure>
+
+`cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)`
 
 * ## Step 2: Canny Edge Detection
 Before performing edge detection on a picture, we should first use a Gaussian filter function to sort the pictures so that noise can be filtered.
 
 在对图片进行边缘检测之前，首先我们应该使用高斯滤波都图片进行整理，这样可以过滤噪声。
 
+<figure>
+<img src="https://github.com/GitEasonXu/Udacity-CarND-Term1/blob/master/image/edges.png" width="380" alt="Edge Image" />
+</figure>
+
 `blur_img = gaussian_blur(gray_img, kernel_size=3)             #高斯滤波`  
 `edges = canny(blur_img,low_threshold=50, high_threshold=150) #canny边缘检测`
 
-<figure>
-<img src="https://github.com/GitEasonXu/Udacity-CarND-Term1/blob/master/image/edges.png" width="380" alt="Edge Image" />
-<figcaption>
-<p></p> 
-<p style="text-align: center;"> Edge Image </p> 
-</figcaption>
-</figure>
 * ## Step 3: Extracting the region of interest
 Through the above two steps, we can already get the edge picture, but there are many regions in the picture that we are not interested. How can we extract the regions of interest?
 
@@ -49,10 +43,6 @@ Through the above two steps, we can already get the edge picture, but there are 
 
 <figure>
 <img src="https://github.com/GitEasonXu/Udacity-CarND-Term1/blob/master/image/region.png" width="380" alt="Region Image" />
-<figcaption>
-<p></p> 
-<p style="text-align: center;"> Region Image </p> 
-</figcaption>
 </figure>
 
 `vertices = np.array([[[0,image_y],[460,320],[500,320],[image_x,image_y]]], dtype=np.int32) `
@@ -82,11 +72,8 @@ img和mask按位相与,因为mask兴趣区域为255,其它区域为0,所以可�
 
 <figure>
 <img src="https://github.com/GitEasonXu/Udacity-CarND-Term1/blob/master/image/line.png" width="380" alt="Line Image" />
-<figcaption>
-<p></p> 
-<p style="text-align: center;"> Line Image </p> 
-</figcaption>
-</figure>  
+</figure> 
+
 ```
 line_img = hough_lines(region_img, rho, theta, threshold, min_line_len, max_line_gap)
 ```
@@ -96,10 +83,6 @@ line_img = hough_lines(region_img, rho, theta, threshold, min_line_len, max_line
 
 <figure>
 <img src="https://github.com/GitEasonXu/Udacity-CarND-Term1/blob/master/image/result.png" width="380" alt="Result Image" />
-<figcaption>
-<p></p> 
-<p style="text-align: center;"> Result Image </p> 
-</figcaption>
 </figure>
 ```
 result_img = weighted_img(line_img, image)
