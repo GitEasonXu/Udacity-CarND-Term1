@@ -88,6 +88,12 @@ line_img = hough_lines(region_img, rho, theta, threshold, min_line_len, max_line
 ```
 result_img = weighted_img(line_img, image)
 ```
+* ## `draw_lines` function Simple explanation
+    - 根据斜率区分左右线
+    - 求取左右斜率的平均值
+    - 根据获取线数据得出对应的`x_2`,`y_2`,设定`y_1`是img hight,由公式k=\frac{y_1 - y_2}{x_1 - x_2}  
+      获取`x_1`后调用`cv2.line(img, (x_1, y_1),(x_2,y_2), color, thickness)`画出直线
+
 
 ## **2. Identify potential shortcomings with your current pipeline**
 
