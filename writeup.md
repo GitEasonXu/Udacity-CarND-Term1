@@ -84,20 +84,17 @@ line_img = hough_lines(region_img, rho, theta, threshold, min_line_len, max_line
 <figure>
 <img src="https://github.com/GitEasonXu/Udacity-CarND-Term1/blob/master/image/result.png" width="380" alt="Result Image" />
 </figure>
+
 ```
 result_img = weighted_img(line_img, image)
 ```
 
 ## **2. Identify potential shortcomings with your current pipeline**
 
-
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
+- 视频流进行处理时,有一些线检测错误;
+- 兴趣区域需要进行设定,不能实现自适应;
 
 
 ## **3. Suggest possible improvements to your pipeline**
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+- 线检测错误还是由于`draw_lines`函数实现方法过于简单,应该可以使用中位数、平均值对异常值进行排除。可以按照小步幅间距的拟合直线。
